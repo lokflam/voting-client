@@ -64,27 +64,14 @@ class Kernel extends ConsoleKernel
     protected function process_jobs($jobs) {
         foreach($jobs as $job) {
             if($job->job == 'count_ballot') {
-                $url = url('ballot/count');
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
-                    'private_key' => '793b849da13c4829693fa555c54686e44951f227637929e0997bd1b67705ecec',
-                    'vote_id' => $job->data,
-                ]));
-                curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']); 
-                curl_exec($ch);
-                curl_close($ch);
+                app('App\Http\Controllers\AdminController')->submit_count_ballot(
+                    '793b849da13c4829693fa555c54686e44951f227637929e0997bd1b67705ecec',
+                    $job->data
+                );
             }
 
             if($job->job == 'update_result') {
-                $url = url('cron/result/update?vote_id='.$job->data);
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_exec($ch);
-                curl_close($ch);
+                app('App\Http\Controllers\AdminController')->update_result($job->data);
             }
         }
     }

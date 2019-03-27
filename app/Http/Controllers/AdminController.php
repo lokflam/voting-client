@@ -343,9 +343,25 @@ class AdminController extends Controller
             ]);
         }
 
+        $json = $this->submit_count_ballot($request->input('private_key'), $request->input('vote_id'));
+
+        if(!isset($json['batch_ids'])) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to submit request',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'id' => $json['batch_ids'],
+        ]);
+    }
+
+    public function submit_count_ballot($private_key, $vote_id) {
         $data = [
-            'private_key' => $request->input('private_key'),
-            'vote_id' => $request->input('vote_id'),
+            'private_key' => $private_key,
+            'vote_id' => $vote_id,
         ];
         $payload = json_encode($data);
 
@@ -360,29 +376,20 @@ class AdminController extends Controller
         curl_close($ch);
 
         $json = json_decode($response, true);
-        if(!isset($json['batch_ids'])) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to submit request',
+
+        if(isset($json['batch_ids'])) {
+            DB::table('batches')->insert([
+                'id' => $json['batch_ids'],
+                'action' => $json['action'],
+                'data' => json_encode($json['data']),
+                'submitted_at' => date('Y-m-d H:i:s', $json['submitted_at']),
             ]);
         }
 
-        DB::table('batches')->insert([
-            'id' => $json['batch_ids'],
-            'action' => $json['action'],
-            'data' => json_encode($json['data']),
-            'submitted_at' => date('Y-m-d H:i:s', $json['submitted_at']),
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'id' => $json['batch_ids'],
-        ]);
+        return $json;
     }
 
-    public function update_result(Request $request) {
-        $vote_id = $request->input('vote_id');
-
+    public function update_result($vote_id) {
         if(!$vote_id) {
             return;
         }

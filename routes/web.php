@@ -49,4 +49,4 @@ Route::group(['middleware' => ['auth.basic.once']], function () {
 });
 
 Route::any('ballot/count', 'AdminController@count_ballot');
-Route::any('cron/result/update', 'AdminController@update_result');
+Route::any('cron/result/update/{vote_id}', 'AdminController@update_result');
