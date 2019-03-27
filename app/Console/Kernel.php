@@ -62,7 +62,6 @@ class Kernel extends ConsoleKernel
     }
 
     protected function process_jobs($jobs) {
-        var_dump('ok');
         foreach($jobs as $job) {
             if($job->job == 'count_ballot') {
                 $url = url('ballot/count');
@@ -75,7 +74,7 @@ class Kernel extends ConsoleKernel
                 ]));
                 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']); 
                 curl_exec($ch);
-                curl_close($ch);
+                curl_close($ch);var_dump('ok');
             }
 
             if($job->job == 'update_result') {
