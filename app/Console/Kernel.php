@@ -26,7 +26,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            var_dump('ok');
             $jobs = DB::table('cron')->where('intervel', '* * * * *')->get();
             $this->process_jobs($jobs);
         })->cron('* * * * *');
@@ -63,6 +62,7 @@ class Kernel extends ConsoleKernel
     }
 
     protected function process_jobs($jobs) {
+        var_dump('ok');
         foreach($jobs as $job) {
             if($job->job == 'count_ballot') {
                 $url = url('ballot/count');
