@@ -260,7 +260,7 @@ class AdminController extends Controller
             'submitted_at' => date('Y-m-d H:i:s', $json['submitted_at']),
         ]);
 
-        DB::table('cron')->where('data', $vote->id)->delete();
+        DB::table('cron')->where('data', $vote_id)->delete();
 
         $request->session()->flash('status', 'Successfully submitted request');
         return redirect('batch/'.$json['batch_ids']);
