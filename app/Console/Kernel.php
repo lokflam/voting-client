@@ -68,19 +68,21 @@ class Kernel extends ConsoleKernel
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
                     'private_key' => '793b849da13c4829693fa555c54686e44951f227637929e0997bd1b67705ecec',
                     'vote_id' => $job->data,
                 ]));
                 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']); 
                 curl_exec($ch);
-                curl_close($ch);var_dump('ok');
+                curl_close($ch);
             }
 
             if($job->job == 'update_result') {
                 $url = url('cron/result/update?vote_id='.$job->data);
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_exec($ch);
                 curl_close($ch);
             }
