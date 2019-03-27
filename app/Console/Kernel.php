@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
+            var_dump('ok');
             $jobs = DB::table('cron')->where('intervel', '* * * * *')->get();
             $this->process_jobs($jobs);
         })->cron('* * * * *');
