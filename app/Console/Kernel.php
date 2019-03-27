@@ -27,37 +27,37 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '* * * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('* * * * *');
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '*/5 * * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('*/5 * * * *');
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '*/10 * * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('*/10 * * * *');
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '*/15 * * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('*/15 * * * *');
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '*/30 * * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('*/30 * * * *');
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '0 * * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('0 * * * *');
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '0 0 * * *')->get();
-            process_jobs($jobs);
+            $this->process_jobs($jobs);
         })->cron('0 0 * * *');
     }
 
