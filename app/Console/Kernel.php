@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '* * * * *')->get();
             $this->process_jobs($jobs);
-        })->cron('* * * * *');
+        })->everyMinute();
 
         $schedule->call(function () {
             $jobs = DB::table('cron')->where('intervel', '*/5 * * * *')->get();
