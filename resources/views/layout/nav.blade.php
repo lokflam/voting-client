@@ -16,5 +16,10 @@
 				<a class="nav-link" href="{{ url('batch') }}">Batch status</a>
 			</li>
 		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url('admin') }}">Admin</a>
+			</li>
+		</ul>
 	</div>
 </nav>

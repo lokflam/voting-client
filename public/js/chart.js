@@ -78,5 +78,5 @@ if(total > 0) {
         });
     
         if(cnt === 100) clearInterval(interval);
-    }, 1000);
+    }, 5000);
 }
