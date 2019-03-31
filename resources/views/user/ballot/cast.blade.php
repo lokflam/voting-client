@@ -32,13 +32,13 @@
             <div class="form-group row">
                 <label for="total_at" class="col-md-2 col-form-label">Counted in total at</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control-plaintext" name="total_at" value="{{ ($created_log && isset($created_log['processed_at']))? $created_log['processed_at']: '' }}">
+                    <input type="text" class="form-control-plaintext" name="total_at" value="{{ ($created_log && isset($created_log['processed_at']))? date('Y-m-d H:i:s', $created_log['processed_at']): '' }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="total_at" class="col-md-2 col-form-label">Counted in casted at</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control-plaintext" name="total_at" value="{{ ($casted_log && isset($casted_log['processed_at']))? $casted_log['processed_at']: '' }}">
+                    <input type="text" class="form-control-plaintext" name="total_at" value="{{ ($casted_log && isset($casted_log['processed_at']))? date('Y-m-d H:i:s', $casted_log['processed_at']): '' }}">
                 </div>
             </div>
             <div class="form-group row">
