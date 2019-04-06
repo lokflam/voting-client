@@ -3,7 +3,7 @@ This project is the front-end client for https://github.com/lokflam/voting
 
 ## Development environment (optional)
 Docker & Docker Compose
-```
+```bash
 # docker
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
