@@ -33,13 +33,18 @@ Refer to [Laradock](https://laradock.io/)
 Refer to [Laravel](https://laravel.com/)
 1. `cd voting-client`
 1. `composer install`
-1. `cp env-example .env`
+1. `cp .env.example .env`
 1. `php artisan key:generate`
 1. Edit `.env`
     1. Change APP_URL and DB config (optional)
     1. Change VOTING_URL and BLOCKCHAIN_URL
     1. Change BLOCKCHAIN_KEY (optional)
-1. Create database with the config in `.env`
+1. Create database with the config in `.env`  
+    If using Laradock phpmyadmin:
+    * Url: host:8080
+    * Server: mysql
+    * Username: root
+    * Password: root
 1. `php artisan migrate:refresh --seed`
 1. Setup cron job with `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
 1. Done, access with a browser
