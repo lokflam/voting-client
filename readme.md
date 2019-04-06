@@ -48,3 +48,4 @@ Refer to [Laravel](https://laravel.com/)
 1. `php artisan migrate:refresh --seed`
 1. Setup cron job with `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
 1. Done, access with a browser
+1. Default username/password for admin page: admin/secret
