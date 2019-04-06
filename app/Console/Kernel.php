@@ -64,10 +64,7 @@ class Kernel extends ConsoleKernel
     protected function process_jobs($jobs) {
         foreach($jobs as $job) {
             if($job->job == 'count_ballot') {
-                app('App\Http\Controllers\AdminController')->submit_count_ballot(
-                    '793b849da13c4829693fa555c54686e44951f227637929e0997bd1b67705ecec',
-                    $job->data
-                );
+                app('App\Http\Controllers\AdminController')->submit_count_ballot(env('BLOCKCHAIN_KEY'), $job->data);
             }
 
             if($job->job == 'update_result') {
