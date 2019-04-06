@@ -1,5 +1,6 @@
 # Voting client
 This project is the front-end client for https://github.com/lokflam/voting
+
 ## Development environment (optional)
 Docker & Docker Compose
 ```
@@ -25,7 +26,9 @@ Refer to [Laradock](https://laradock.io/)
     1. Change MYSQL_VERSION to 5.7
     1. Change APP_CODE_PATH_HOST (optional)
 1. `docker-compose up -d nginx mysql phpmyadmin workspace`
+    1. Shut down: `docker-compose down`
 1. `docker-compose exec workspace bash`
+
 ## Setup
 Refer to [Laravel](https://laravel.com/)
 1. `cd voting-client`
